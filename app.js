@@ -30,12 +30,9 @@ function loadCardNewDeck(){
         let response = JSON.parse(request.responseText);
 
         
-            let firstCard = response.cards[0];
+            let firstCard = response[0].cards;        
         
-
-        
-        
-        console.log(cards[0].value);
+        console.log(firstCard.value);
 
         showCard();
 
@@ -47,10 +44,10 @@ function showCard(){
     let firstCard = document.createElement('li');
 
     let parent = document.querySelector('#cards');
-    parent.appendChild(card);
+    parent.appendChild(firstCard);
 
     let cardImage = document.createElement('p');
-    cardImage.textContent = card.image;
+    cardImage.textContent = card[0].image;
     firstCard.appendChild(cardImage);
 
 };

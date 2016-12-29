@@ -1,4 +1,9 @@
+h1{
+    display:inline-block;
+}
+
 img{
     height: 276px;
+    display:inline-block;
 };
 
