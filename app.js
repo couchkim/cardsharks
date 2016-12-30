@@ -41,19 +41,23 @@ request.send();
 };
 
 function showCard(){
-    let firstCard = document.createElement('li');
+    let card = document.createElement('li');
 
     let parent = document.querySelector('#cards');
-    parent.appendChild(firstCard);
+    parent.appendChild(card);
 
     let cardImage = document.createElement('p');
-    cardImage.textContent = card[0].image;
-    firstCard.appendChild(cardImage);
+    cardImage.textContent = card[i].image;
+    card.appendChild(cardImage);
 
 };
 
 function compareHigher(){
-
+    if(card[i+1] >= card[i]){
+        card[i] = card[i+1];
+        
+        showCard();
+    }
 };
 
 function compareLower(){
