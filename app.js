@@ -31,12 +31,31 @@ function getDeck(){
     request.open('GET', 'https://deckofcardsapi.com/api/deck/new/draw/?count=5');
     request.addEventListener('load', function(){
         let response = JSON.parse(request.responseText);
-        // for(let i=0; i < response.cards.length; i++){
-            deck = response.cards;
-   
-             flipCard(deck[currentCard]);
+         deck = response.cards;
+        
+
+        for(let i=0; i < deck.length; i++){
+            if(deck[i].value = "KING"){
+                deck[i].value = 13;
+        }};
+            for(let i=0; i < deck.length; i++){
+            if(deck[i].value = "QUEEN"){
+                deck[i].value = 12;
+            }};
+            for(let i=0; i < deck.length; i++){
+            if(deck[i].value = "JACK"){
+                deck[i].value = 11;
+            }};
+            for(let i=0; i < deck.length; i++){
+            if(deck[i].value = "ACE"){
+                deck[i].value = 14;
+            }};
     
-    });
+                       
+   
+            flipCard(deck[currentCard]);
+ });
+    
 request.send();
 };
 
@@ -58,9 +77,16 @@ function compareHigher(){
     flipCard(deck[currentCard]);
    
     if(deck[currentCard].value > deck[currentCard-1].value){
-       return "Congratulations.  Pick Again."}
+       let parent = document.querySelector('#cardButtons');
+       let winMessage = document.createElement('h1');
+       message.textContent =  "Congratulations.  Pick Again.";
+       parent.appendChild(winMessage);
+    } 
        else{
-           return "Sorry, you lose!";   
+        let parent = document.querySelector('#cardButtons');
+       let loseMessage = document.createElement('h1');
+       loseMessage.textContent =  "Sorry, you lose!";
+       parent.appendChild(loseMessage);   
        }
 
 };
@@ -83,6 +109,7 @@ function startGame(){
 
 function removeAll(){
     document.querySelector('#cards').innerHTML = "";
+
 }
 
 
