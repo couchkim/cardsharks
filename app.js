@@ -10,7 +10,7 @@
 // Need to get first card and load all three buttons on page load
 
 function init(){
-    loadCardNewDeck();
+   getDeck();
 
 let getCardHigher = document.querySelector("#higher");
 getCardHigher.addEventListener('click', compareHigher);
@@ -23,41 +23,48 @@ newGame.addEventListener('click', startGame);
 
 }
 
-function loadCardNewDeck(){
+function getDeck(){
     let request = new XMLHttpRequest();
-    request.open('GET', 'https://deckofcardsapi.com/api/deck/"new"/draw/?count=5');
+    request.open('GET', 'https://deckofcardsapi.com/api/deck/new/draw/?count=5');
     request.addEventListener('load', function(){
         let response = JSON.parse(request.responseText);
+        // for(let i=0; i < response.cards.length; i++){
+            let firstCard = response.cards[0];  
+        // }
 
-        
-            let firstCard = response[0].cards;        
+                  
         
         console.log(firstCard.value);
 
-        showCard();
+        flipCard(firstCard);
 
     });
 request.send();
 };
 
-function showCard(){
+function flipCard(newCard){
     let card = document.createElement('li');
 
     let parent = document.querySelector('#cards');
     parent.appendChild(card);
 
-    let cardImage = document.createElement('p');
-    cardImage.textContent = card[i].image;
+    let cardImage = document.createElement('img');
+    cardImage.src = newCard.image;
     card.appendChild(cardImage);
 
 };
 
-function compareHigher(){
+function compareHigher(card){
+    flipCard(response.cards[i+1]);
+   
     if(card[i+1] >= card[i]){
-        card[i] = card[i+1];
+       return "Congratulations.  Pick Again."}
+       else{
+           "Sorry, you lose!"
+       }
         
-        showCard();
-    }
+       
+
 };
 
 function compareLower(){
