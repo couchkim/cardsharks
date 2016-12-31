@@ -34,25 +34,18 @@ function getDeck(){
          deck = response.cards;
         
 
-        for(let i=0; i < deck.length; i++){
-            if(deck[i].value = "KING"){
-                deck[i].value = 13;
-        }};
-            for(let i=0; i < deck.length; i++){
-            if(deck[i].value = "QUEEN"){
-                deck[i].value = 12;
-            }};
-            for(let i=0; i < deck.length; i++){
-            if(deck[i].value = "JACK"){
-                deck[i].value = 11;
-            }};
-            for(let i=0; i < deck.length; i++){
-            if(deck[i].value = "ACE"){
-                deck[i].value = 14;
-            }};
+        // for(let i=0; i < deck.length; i++){
+        //     if(deck[i].value = "KING"){
+        //         deck[i].value = 13}
+        //     else if(deck[i].value = "QUEEN"){
+        //         deck[i].value = 12}else
+        //     if(deck[i].value = "JACK"){
+        //         deck[i].value = 11}else
+        //     if(deck[i].value = "ACE"){
+        //         deck[i].value = 14
+        //     }};
     
                        
-   
             flipCard(deck[currentCard]);
  });
     
@@ -74,17 +67,22 @@ function flipCard(newCard){
 };
 
 function compareHigher(){
+    // removeMessages();
     flipCard(deck[currentCard]);
    
-    if(deck[currentCard].value > deck[currentCard-1].value){
+    if(deck[currentCard].value >= deck[currentCard-1].value){
+        console.log(deck[currentCard].value);
+        console.log(deck[currentCard-1].value);
        let parent = document.querySelector('#cardButtons');
-       let winMessage = document.createElement('h1');
-       message.textContent =  "Congratulations.  Pick Again.";
+       let winMessage = document.createElement('h2');
+       winMessage.setAttribute('id', 'win');
+       winMessage.textContent =  "Congratulations.  Pick Again.";
        parent.appendChild(winMessage);
     } 
        else{
         let parent = document.querySelector('#cardButtons');
-       let loseMessage = document.createElement('h1');
+       let loseMessage = document.createElement('h2');
+       loseMessage.setAttribute('id', 'lose');
        loseMessage.textContent =  "Sorry, you lose!";
        parent.appendChild(loseMessage);   
        }
@@ -92,9 +90,10 @@ function compareHigher(){
 };
 
 function compareLower(){
+  
     flipCard(deck[currentCard]);
    
-    if(deck[currentCard].value < deck[currentCard-1].value){
+    if(deck[currentCard].value <= deck[currentCard-1].value){
        return "Congratulations.  Pick Again."}
        else{
            "Sorry, you lose!"
@@ -102,15 +101,21 @@ function compareLower(){
 };
 
 function startGame(){
-    removeAll();
+    removeCards();
+    removeMessages();
     currentCard = 0;
     getDeck();
 };
 
-function removeAll(){
+function removeCards(){
     document.querySelector('#cards').innerHTML = "";
 
-}
+};
+
+function removeMessages(){
+    document.querySelector('#win').innerHTML = "";
+    document.querySelector('#lose').innerHTML = "";
+};
 
 
 // Need to load getCard when higher OR lower button is clicked
