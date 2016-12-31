@@ -9,6 +9,9 @@
 
 // Need to get first card and load all three buttons on page load
 
+let deck = [];
+let currentCard = 0;
+
 function init(){
    getDeck();
 
@@ -29,15 +32,10 @@ function getDeck(){
     request.addEventListener('load', function(){
         let response = JSON.parse(request.responseText);
         // for(let i=0; i < response.cards.length; i++){
-            let firstCard = response.cards[0];  
-        // }
-
-                  
-        
-        console.log(firstCard.value);
-
-        flipCard(firstCard);
-
+            deck = response.cards;
+   
+             flipCard(deck[currentCard]);
+    
     });
 request.send();
 };
@@ -52,29 +50,40 @@ function flipCard(newCard){
     cardImage.src = newCard.image;
     card.appendChild(cardImage);
 
+    currentCard = currentCard + 1;
+
 };
 
-function compareHigher(card){
-    flipCard(response.cards[i+1]);
+function compareHigher(){
+    flipCard(deck[currentCard]);
    
-    if(card[i+1] >= card[i]){
+    if(deck[currentCard].value > deck[currentCard-1].value){
        return "Congratulations.  Pick Again."}
        else{
-           "Sorry, you lose!"
+           return "Sorry, you lose!";   
        }
-        
-       
 
 };
 
 function compareLower(){
-
+    flipCard(deck[currentCard]);
+   
+    if(deck[currentCard].value < deck[currentCard-1].value){
+       return "Congratulations.  Pick Again."}
+       else{
+           "Sorry, you lose!"
+       }
 };
 
 function startGame(){
-
+    removeAll();
+    currentCard = 0;
+    getDeck();
 };
 
+function removeAll(){
+    document.querySelector('#cards').innerHTML = "";
+}
 
 
 // Need to load getCard when higher OR lower button is clicked
