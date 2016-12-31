@@ -103,7 +103,7 @@ function flipCard(newCard){
 
 function compareHigher(){
     // removeMessages();
-    flipCard(deck[currentCard]);
+    
    
     if(deck[currentCard].value >= deck[currentCard-1].value){
         console.log(deck[currentCard].value);
@@ -121,18 +121,30 @@ function compareHigher(){
        loseMessage.textContent =  "Sorry, you lose!";
        parent.appendChild(loseMessage);   
        }
-
+flipCard(deck[currentCard]);
 }
 
 function compareLower(){
   
-    flipCard(deck[currentCard]);
    
     if(deck[currentCard].value <= deck[currentCard-1].value){
-       return "Congratulations.  Pick Again."}
+        console.log(deck[currentCard].value);
+        console.log(deck[currentCard-1].value);
+       let parent = document.querySelector('#cardButtons');
+       let winMessage = document.createElement('h2');
+       winMessage.setAttribute('id', 'win');
+       winMessage.textContent =  "Congratulations.  Pick Again.";
+       parent.appendChild(winMessage);
+    } 
        else{
-           "Sorry, you lose!"
+        let parent = document.querySelector('#cardButtons');
+       let loseMessage = document.createElement('h2');
+       loseMessage.setAttribute('id', 'lose');
+       loseMessage.textContent =  "Sorry, you lose!";
+       parent.appendChild(loseMessage);   
        }
+
+flipCard(deck[currentCard]);
 }
 
 function startGame(){
