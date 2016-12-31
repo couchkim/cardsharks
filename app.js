@@ -32,25 +32,60 @@ function getDeck(){
     request.addEventListener('load', function(){
         let response = JSON.parse(request.responseText);
          deck = response.cards;
+
+         console.log(deck);
         
 
-        // for(let i=0; i < deck.length; i++){
-        //     if(deck[i].value = "KING"){
-        //         deck[i].value = 13}
-        //     else if(deck[i].value = "QUEEN"){
-        //         deck[i].value = 12}else
-        //     if(deck[i].value = "JACK"){
-        //         deck[i].value = 11}else
-        //     if(deck[i].value = "ACE"){
-        //         deck[i].value = 14
-        //     }};
+        for(let i=0; i < deck.length; i++){
+            if(deck[i].value === "KING"){
+                deck[i].value = 13;
+            }else
+            if(deck[i].value === "QUEEN"){
+                deck[i].value = 12;
+            }else
+            if(deck[i].value === "JACK"){
+                deck[i].value = 11;
+            }else
+            if(deck[i].value === "ACE"){
+                deck[i].value = 14;
+            }else
+            if(deck[i].value === "10"){
+                deck[i].value = 10;
+            }else
+            if(deck[i].value === "9"){
+                deck[i].value = 9;
+            }else
+            if(deck[i].value === "8"){
+                deck[i].value = 8;
+            }else
+            if(deck[i].value === "7"){
+                deck[i].value = 7;
+            }else
+            if(deck[i].value === "6"){
+                deck[i].value = 6;
+            }else
+            if(deck[i].value === "5"){
+                deck[i].value = 5;
+            }else
+            if(deck[i].value === "4"){
+                deck[i].value = 4;
+            }else
+            if(deck[i].value === "3"){
+                deck[i].value = 3;
+            }else
+            if(deck[i].value === "2"){
+                deck[i].value = 2;
+            }
+        
+        }
+            console.log(deck);
     
                        
             flipCard(deck[currentCard]);
- });
+ })
     
 request.send();
-};
+}
 
 function flipCard(newCard){
     let card = document.createElement('li');
@@ -64,7 +99,7 @@ function flipCard(newCard){
 
     currentCard = currentCard + 1;
 
-};
+}
 
 function compareHigher(){
     // removeMessages();
@@ -87,7 +122,7 @@ function compareHigher(){
        parent.appendChild(loseMessage);   
        }
 
-};
+}
 
 function compareLower(){
   
@@ -98,24 +133,24 @@ function compareLower(){
        else{
            "Sorry, you lose!"
        }
-};
+}
 
 function startGame(){
-    removeCards();
-    removeMessages();
+    // removeCards();
+    // removeMessages();
     currentCard = 0;
     getDeck();
-};
+}
 
 function removeCards(){
     document.querySelector('#cards').innerHTML = "";
 
-};
+}
 
 function removeMessages(){
     document.querySelector('#win').innerHTML = "";
     document.querySelector('#lose').innerHTML = "";
-};
+}
 
 
 // Need to load getCard when higher OR lower button is clicked
