@@ -111,7 +111,7 @@ function compareHigher(){
        let parent = document.querySelector('#cardButtons');
        let winMessage = document.createElement('h2');
        winMessage.setAttribute('id', 'win');
-       winMessage.textContent =  "Congratulations.  Pick Again.";
+       winMessage.textContent =  "Congratulations!  Pick Again.";
        parent.appendChild(winMessage);
     } 
        else{
@@ -133,7 +133,7 @@ function compareLower(){
        let parent = document.querySelector('#cardButtons');
        let winMessage = document.createElement('h2');
        winMessage.setAttribute('id', 'win');
-       winMessage.textContent =  "Congratulations.  Pick Again.";
+       winMessage.textContent =  "Congratulations!  Pick Again.";
        parent.appendChild(winMessage);
     } 
        else{
@@ -148,8 +148,8 @@ flipCard(deck[currentCard]);
 }
 
 function startGame(){
-    // removeCards();
-    // removeMessages();
+    removeCards();
+    removeMessages();
     currentCard = 0;
     getDeck();
 }
